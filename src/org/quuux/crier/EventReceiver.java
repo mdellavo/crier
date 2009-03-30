@@ -26,6 +26,7 @@ public class EventReceiver extends BroadcastReceiver {
 	if(Config.LOGD)
 	    Log.d(TAG, "Event: " + intent.toString());
 
+
 	if(action.compareTo(ACTION_PHONE_STATE) == 0)
 	    onCall(context, extras);
 	else if(action.compareTo(ACTION_SMS_RECEIVED) == 0)

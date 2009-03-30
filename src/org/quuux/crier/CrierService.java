@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Config;
 import android.util.Log;
 
+import android.media.AudioManager;
+
 import android.telephony.PhoneNumberUtils;
 import android.provider.Contacts.Phones;
 import android.database.Cursor;
@@ -24,6 +26,8 @@ public class CrierService extends Service {
     private TTS     tts;
     private boolean initialized = false;
     private String  queued_message;
+
+    private AudioManager audio_manager;
 
     public void onCreate() {
 	super.onCreate();
@@ -48,6 +52,8 @@ public class CrierService extends Service {
 	    };
 
 	tts = new TTS(this, init_listener, true);
+
+	audio_manager = (AudioManager)getSystemService(AUDIO_SERVICE);
     }
 
     public void onDestroy() {
@@ -112,15 +118,11 @@ public class CrierService extends Service {
 
     private void speak(String message) {
 	if(tts != null && initialized) { 
-	    if(message.compareTo("") != 0) {
+	    if(audio_manager.getRingerMode() == AudioManager.RINGER_MODE_NORMAL) {
 		if(Config.LOGD)
 		    Log.d(TAG, "speaking: " + message);		
 
-		String[] params = new String[] {
-		    "VOICE_FEMALE"
-		};
-
-		tts.speak(message, 1, params);
+		tts.speak(message, 1, null);
 	    }
 	} else {
 	    Log.d(TAG, "tts is null or not initialized, queuing message");
