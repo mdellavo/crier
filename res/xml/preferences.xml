@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+            android:title="@string/preferences_title">
+
+        <CheckBoxPreference
+                android:key="phone_enabled"
+                android:title="@string/title_phone_enabled"
+                android:summary="@string/summary_phone_enabled" />
+
+        <CheckBoxPreference
+                android:key="text_enabled"
+                android:title="@string/title_text_enabled"
+                android:summary="@string/summary_text_enabled" />
+
+        <CheckBoxPreference
+                android:key="time_enabled"
+                android:title="@string/title_time_enabled"
+                android:summary="@string/summary_time_enabled" />
+
+    </PreferenceCategory>                
+</PreferenceScreen>
