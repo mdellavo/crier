@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CrierActivity</string>
+    <string name="app_name">Crier Settings</string>
+    <string name="preferences_title">Crier Settings</string>
+
+    <string name="title_phone_enabled">Announce Phone Calls</string>
+    <string name="summary_phone_enabled">Announce incomming phone calls</string>
+
+    <string name="title_text_enabled">Announce Text Messaged</string>
+    <string name="summary_text_enabled">Announce incomming text messages</string>
+
+    <string name="title_time_enabled">Announce Time</string>   
+    <string name="summary_time_enabled">Announce time at the top and bottom of the hour</string>
 </resources>

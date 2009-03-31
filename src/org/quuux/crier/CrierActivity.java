@@ -1,15 +1,16 @@
 package org.quuux.crier;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
+import android.preference.Preference;
 
-public class CrierActivity extends Activity
+import org.quuux.crier.R;
+
+public class CrierActivity extends PreferenceActivity
 {
-    /** Called when the activity is first created. */
-    @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        addPreferencesFromResource(R.xml.preferences);
     }
 }

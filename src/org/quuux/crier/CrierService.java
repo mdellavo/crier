@@ -14,6 +14,8 @@ import android.telephony.PhoneNumberUtils;
 import android.provider.Contacts.Phones;
 import android.database.Cursor;
 
+import org.quuux.crier.AreaCodeLocator;
+
 import com.google.tts.TTS;
 
 public class CrierService extends Service {
@@ -28,6 +30,8 @@ public class CrierService extends Service {
     private String  queued_message;
 
     private AudioManager audio_manager;
+
+    private AreaCodeLocator area_code_locator;
 
     public void onCreate() {
 	super.onCreate();
@@ -51,9 +55,9 @@ public class CrierService extends Service {
 		}
 	    };
 
-	tts = new TTS(this, init_listener, true);
-
-	audio_manager = (AudioManager)getSystemService(AUDIO_SERVICE);
+	//tts               = new TTS(this, init_listener, true);
+	audio_manager     = (AudioManager)getSystemService(AUDIO_SERVICE);
+	area_code_locator = new AreaCodeLocator();
     }
 
     public void onDestroy() {
@@ -98,22 +102,21 @@ public class CrierService extends Service {
     }
 
     private String buildMessage(Intent intent) {
-	int type = intent.getIntExtra("type", 0);
+	int type       = intent.getIntExtra("type", 0);
+	String address = intent.getStringExtra("address");	
 
-	String type_s   = type == TEXT_NOTIFICATION ? "text message" : "call";
-	String address  = PhoneNumberUtils.formatNumber(intent.getStringExtra("address"));	
-	String contact  = queryContacts(address);
-	String location = queryLocation(address);
+	String address_s = queryContacts(address);
+	if(Config.LOGD && address_s != null)
+	    Log.d(TAG, "contact: " + address_s);
+
+	if(address_s == null) {
+	    address_s = queryLocation(address);
 	
-	String address_s;
-	if(contact != null)
-	    address_s = contact;
-	else if(location != null)
-	    address_s = location;
-	else
-	    address_s = address;
-	
-	return type_s + " from, " + address_s;
+	    if(Config.LOGD && address_s != null)
+		Log.d(TAG, "location: " + address_s);
+	}
+		
+	return (type == TEXT_NOTIFICATION ? "text message from, " : "call from, ") + address_s;
     }
 
     private void speak(String message) {
@@ -165,8 +168,7 @@ public class CrierService extends Service {
 		if(Config.LOGD)
 		    Log.d(TAG, "found person : " + id + ", " + name + ", " + display_name);
 
-		return display_name;
-		
+		return display_name;		
 	    } while (cursor.moveToNext());
 	}
 
@@ -174,6 +176,6 @@ public class CrierService extends Service {
     } 
 
     private String queryLocation(String address) {
-	return null;
+	return area_code_locator.locate(address);
     }
 }

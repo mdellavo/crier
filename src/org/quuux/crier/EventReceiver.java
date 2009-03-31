@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.util.Config;
 import android.util.Log;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import android.telephony.PhoneStateListener;
 import android.telephony.gsm.SmsMessage;
 
@@ -23,13 +26,14 @@ public class EventReceiver extends BroadcastReceiver {
 	String action = intent.getAction();
 	Bundle extras = intent.getExtras();
 
+	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
 	if(Config.LOGD)
 	    Log.d(TAG, "Event: " + intent.toString());
 
-
-	if(action.compareTo(ACTION_PHONE_STATE) == 0)
+	if(preferences.getBoolean("phone_enabled", false) && action.compareTo(ACTION_PHONE_STATE) == 0)
 	    onCall(context, extras);
-	else if(action.compareTo(ACTION_SMS_RECEIVED) == 0)
+	else if(preferences.getBoolean("text_enabled", false) && action.compareTo(ACTION_SMS_RECEIVED) == 0)
 	    onText(context, extras);
     }
 
@@ -63,6 +67,10 @@ public class EventReceiver extends BroadcastReceiver {
 
 	    notify(context, CrierService.TEXT_NOTIFICATION, address);
 	}
+    }
+
+    private void onAlarm(Context context, Bundle extras) {
+
     }
 
     private void notify(Context context, int type, String address) {
