@@ -14,6 +14,8 @@ import android.telephony.PhoneNumberUtils;
 import android.provider.Contacts.Phones;
 import android.database.Cursor;
 
+import java.util.Calendar;
+
 import org.quuux.crier.AreaCodeLocator;
 
 import com.google.tts.TTS;
@@ -21,13 +23,17 @@ import com.google.tts.TTS;
 public class CrierService extends Service {
     private static final String TAG = "Crier";
 
-    public static final int TEXT_NOTIFICATION    = 0x1;
-    public static final int CALL_NOTIFICATION    = 0x2;
-    public static final int OFFHOOK_NOTIFICATION = 0x3;
+    public static final int NOTIFICATION_TEXT    = 0x1;
+    public static final int NOTIFICATION_CALL    = 0x2;
+    public static final int NOTIFICATION_OFFHOOK = 0x3;
+    public static final int NOTIFICATION_IDLE    = 0x4;
+    public static final int NOTIFICATION_ALARM   = 0x5;
 
-    private TTS     tts;
     private boolean initialized = false;
-    private String  queued_message;
+    private boolean offhook     = false;
+
+    private TTS    tts;
+    private String queued_message;
 
     private AudioManager audio_manager;
 
@@ -55,7 +61,7 @@ public class CrierService extends Service {
 		}
 	    };
 
-	//tts               = new TTS(this, init_listener, true);
+	tts               = new TTS(this, init_listener, true);
 	audio_manager     = (AudioManager)getSystemService(AUDIO_SERVICE);
 	area_code_locator = new AreaCodeLocator();
     }
@@ -78,7 +84,8 @@ public class CrierService extends Service {
 
 	int type = intent.getIntExtra("type", 0);
 
-	if(type == TEXT_NOTIFICATION || type == CALL_NOTIFICATION) {
+	if(type == NOTIFICATION_TEXT || type == NOTIFICATION_CALL) {
+
 	    if(Config.LOGD)
 		Log.d(TAG, "notifying");	
 
@@ -89,11 +96,34 @@ public class CrierService extends Service {
 
 	    speak(message);
 
-	} else if(type == OFFHOOK_NOTIFICATION) {
+	} else if(type == NOTIFICATION_OFFHOOK) {
+
 	    if(Config.LOGD)
-		Log.d(TAG, "silencing");		
+		Log.d(TAG, "offhook");		
+
+	    offhook = true;
 
 	    silence();
+
+	} else if(type == NOTIFICATION_IDLE) { 
+
+	    if(Config.LOGD)
+		Log.d(TAG, "idle");		
+
+	    offhook = false;
+
+	} else if(type == NOTIFICATION_ALARM) {
+	    Calendar calendar = Calendar.getInstance();
+	    
+	    String message = String.format("the time is now, %d %02d %s", 
+					   calendar.get(Calendar.HOUR), 
+					   calendar.get(Calendar.MINUTE), 
+					   calendar.get(Calendar.AM_PM) == Calendar.AM ? "AM" : "PM");
+
+	    if(Config.LOGD)
+		Log.d(TAG, "alarm: " + message);		
+
+	    speak(message);
 	}
     }
 
@@ -116,12 +146,12 @@ public class CrierService extends Service {
 		Log.d(TAG, "location: " + address_s);
 	}
 		
-	return (type == TEXT_NOTIFICATION ? "text message from, " : "call from, ") + address_s;
+	return (type == NOTIFICATION_TEXT ? "text message from, " : "call from, ") + address_s;
     }
 
     private void speak(String message) {
 	if(tts != null && initialized) { 
-	    if(audio_manager.getRingerMode() == AudioManager.RINGER_MODE_NORMAL) {
+	    if(audio_manager.getRingerMode() == AudioManager.RINGER_MODE_NORMAL && !offhook) {
 		if(Config.LOGD)
 		    Log.d(TAG, "speaking: " + message);		
 
@@ -134,6 +164,9 @@ public class CrierService extends Service {
     }
 
     private void silence() {
+	if(Config.LOGD)
+	    Log.d(TAG, "silencing");		
+
 	if(tts != null && initialized && tts.isSpeaking())
 	    tts.stop();
     }
@@ -163,6 +196,7 @@ public class CrierService extends Service {
 	    do {		
 		int id              = cursor.getInt(id_col);
 		String name         = cursor.getString(name_col);
+
 		String display_name = cursor.getString(display_name_col);
 		
 		if(Config.LOGD)

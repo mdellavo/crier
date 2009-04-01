@@ -14,13 +14,17 @@ import android.telephony.PhoneStateListener;
 import android.telephony.gsm.SmsMessage;
 
 import org.quuux.crier.CrierService;
+import org.quuux.crier.AlarmInstaller;
 
 public class EventReceiver extends BroadcastReceiver {
     private static final String TAG = "Crier";
 
     private static final String ACTION_PHONE_STATE  = "android.intent.action.PHONE_STATE";
     private static final String ACTION_SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
+
     private static final String PHONE_STATE_RINGING = "RINGING";
+    private static final String PHONE_STATE_OFFHOOK = "OFFHOOK";
+    private static final String PHONE_STATE_IDLE    = "IDLE";
 
     public void onReceive(Context context, Intent intent) {
 	String action = intent.getAction();
@@ -35,6 +39,8 @@ public class EventReceiver extends BroadcastReceiver {
 	    onCall(context, extras);
 	else if(preferences.getBoolean("text_enabled", false) && action.compareTo(ACTION_SMS_RECEIVED) == 0)
 	    onText(context, extras);
+	else if(preferences.getBoolean("time_enabled", false) && action.compareTo(Intent.ACTION_BOOT_COMPLETED) == 0)
+	    onBoot(context, extras);
     }
 
     private void onCall(Context context, Bundle extras) {
@@ -47,9 +53,11 @@ public class EventReceiver extends BroadcastReceiver {
 	}
 
 	if(state.compareTo(PHONE_STATE_RINGING) == 0) {
-	    notify(context, CrierService.CALL_NOTIFICATION, incoming_number);
-	} else {
-	    notify(context, CrierService.OFFHOOK_NOTIFICATION, incoming_number);
+	    notify(context, CrierService.NOTIFICATION_CALL, incoming_number);
+	} else if(state.compareTo(PHONE_STATE_OFFHOOK) == 0) {
+	    notify(context, CrierService.NOTIFICATION_OFFHOOK, incoming_number);
+	} else if(state.compareTo(PHONE_STATE_IDLE) == 0) {
+	    notify(context, CrierService.NOTIFICATION_IDLE, null);
 	}
     }
 
@@ -65,12 +73,15 @@ public class EventReceiver extends BroadcastReceiver {
 	    if(Config.LOGD)
 		Log.d(TAG, "incoming text address: " + address);		
 
-	    notify(context, CrierService.TEXT_NOTIFICATION, address);
+	    notify(context, CrierService.NOTIFICATION_TEXT, address);
 	}
     }
 
-    private void onAlarm(Context context, Bundle extras) {
-
+    private void onBoot(Context context, Bundle extras) {
+	if(Config.LOGD)
+	    Log.d(TAG, "onBoot");
+	
+	AlarmInstaller.install(context);
     }
 
     private void notify(Context context, int type, String address) {
