@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Crier Settings</string>
+    <string name="app_name">Crier</string>
+    <string name="main_name">Crier Settings</string>
+    <string name="trainer_name">Crier Trainer</string>
+
     <string name="preferences_title">Crier Settings</string>
 
     <string name="title_phone_enabled">Announce Phone Calls</string>
