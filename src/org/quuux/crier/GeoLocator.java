@@ -3,7 +3,7 @@ package org.quuux.crier;
 import java.util.Map;
 import java.util.HashMap;
 
-public class AreaCodeLocator {
+public class GeoLocator {
     String[][] area_codes = {
 	{ "201", "Northern New Jersey" },
 	{ "202", "Washington D.C." },
@@ -392,7 +392,7 @@ public class AreaCodeLocator {
 
     private Map<String,String> area_code_map;
 
-    public AreaCodeLocator() {
+    public GeoLocator() {
 	area_code_map = new HashMap<String,String>();
 
 	for(int i=0; i<area_codes.length; i++)

@@ -13,10 +13,10 @@ public class AlarmInstaller {
     private static final String TAG       = "Crier";
     private static final int ALARM_PERIOD = 1800000;
 
-    public static Intent buildIntent() {
+    public static PendingIntent buildIntent(Context context) {
 	Intent intent = new Intent(context, CrierService.class);
 	intent.putExtra("type", CrierService.NOTIFICATION_ALARM);
-	return intent;
+	return PendingIntent.getService(context, 0, intent, 0);
     }
 
     public static void install(Context context) {
@@ -25,7 +25,7 @@ public class AlarmInstaller {
 	    Log.d(TAG, "Installing alarm");
 
 	AlarmManager alarm_manager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);	
-	alarm_manager.setRepeating(AlarmManager.RTC, 0, ALARM_PERIOD, PendingIntent.getService(context, 0, buildIntent(), 0));
+	alarm_manager.setRepeating(AlarmManager.RTC, 0, ALARM_PERIOD, buildIntent(context));
     }
 
     public static void cancel(Context context) {
@@ -34,6 +34,6 @@ public class AlarmInstaller {
 	    Log.d(TAG, "Cancelling alarm");
 
 	AlarmManager alarm_manager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-	alarm_manager.cancel(PendingIntent.getService(context, 0, buildIntent(), 0));	
+	alarm_manager.cancel(buildIntent(context));	
     }
 }
