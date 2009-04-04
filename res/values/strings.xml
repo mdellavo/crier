@@ -36,6 +36,10 @@
    <!-- trainer -->
    <string name="trainer_button_add">Add a new Phrase</string>
 
+   <string name="dialog_phrase_title">What Phrase Was Recorded?</string>
+   <string name="dialog_phrase_ok">Add Phrase</string>
+   <string name="dialog_phrase_cancel">Cancel</string>
+
    <!-- menu -->
    <string name="option_speech_trainer">Speech Trainer</string>
    <string name="option_about">About</string>

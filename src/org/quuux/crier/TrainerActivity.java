@@ -9,8 +9,15 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.EditText;
 import android.util.Config;
 import android.util.Log;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 import android.provider.MediaStore;
 
@@ -48,5 +55,37 @@ public class TrainerActivity extends Activity
 		 showDialog(DIALOG_PHRASE_TEXT);
              }
          }
-     }    
+     }
+
+    protected Dialog onCreateDialog(int id) {
+	Dialog rv = null;
+
+	final View dialog_view = LayoutInflater.from(this).inflate(R.layout.dialog_phrase_text, null);
+	
+	if(id == DIALOG_PHRASE_TEXT) {
+            rv = new AlertDialog.Builder(this)
+                .setIcon(R.drawable.icon)
+                .setTitle(R.string.dialog_phrase_title)
+                .setView(dialog_view)
+                .setPositiveButton(R.string.dialog_phrase_ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+			EditText phrase_text = (EditText)dialog_view.findViewById(R.id.phrase_text);
+			String text          = phrase_text.getText().toString();
+			
+			if(Config.LOGD)
+			    Log.d(TAG, "Phrase Text: " + text);		
+                    }
+                })
+                .setNegativeButton(R.string.dialog_phrase_cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+			if(Config.LOGD)
+			    Log.d(TAG, "Dialog cancel");	     
+                    }
+                })
+                .create();
+	}
+      
+	return rv;
+    }
 }
