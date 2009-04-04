@@ -6,19 +6,43 @@
             android:title="@string/preferences_title">
 
         <CheckBoxPreference
-                android:key="phone_enabled"
-                android:title="@string/title_phone_enabled"
-                android:summary="@string/summary_phone_enabled" />
-
+           android:key="phone_enabled"
+	   android:defaultValue="true"
+           android:title="@string/title_phone_enabled"
+           android:summary="@string/summary_phone_enabled" />
+	
+        <EditTextPreference
+           android:key="phone_format"
+	   android:defaultValue="@string/phone_format_default"
+	   android:dialogTitle="@string/dialog_phone_format"
+           android:title="@string/title_phone_format"
+           android:summary="@string/summary_phone_format" />
+	
         <CheckBoxPreference
-                android:key="text_enabled"
-                android:title="@string/title_text_enabled"
-                android:summary="@string/summary_text_enabled" />
-
+           android:key="text_enabled"
+	   android:defaultValue="true"
+           android:title="@string/title_text_enabled"
+           android:summary="@string/summary_text_enabled" />
+	
+        <EditTextPreference
+           android:key="text_format"
+	   android:defaultValue="@string/text_format_default"
+	   android:dialogTitle="@string/dialog_text_format"
+           android:title="@string/title_text_format"
+           android:summary="@string/summary_text_format" />
+	
         <CheckBoxPreference
-                android:key="time_enabled"
-                android:title="@string/title_time_enabled"
-                android:summary="@string/summary_time_enabled" />
-
+           android:key="time_enabled"
+	   android:defaultValue="true"
+           android:title="@string/title_time_enabled"
+           android:summary="@string/summary_time_enabled" />
+	
+        <EditTextPreference
+           android:key="time_format"
+	   android:defaultValue="@string/time_format_default"
+	   android:dialogTitle="@string/dialog_time_format"
+           android:title="@string/title_time_format"
+           android:summary="@string/summary_time_format" />
+	
     </PreferenceCategory>                
 </PreferenceScreen>

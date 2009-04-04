@@ -7,11 +7,14 @@ import android.os.IBinder;
 import android.os.Bundle;
 import android.util.Config;
 import android.util.Log;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import android.media.AudioManager;
 
 import java.util.Calendar;
 
+import org.quuux.crier.R;
 import org.quuux.crier.AreaCodeLocator;
 import org.quuux.crier.ContactLocator;
 
@@ -81,13 +84,21 @@ public class CrierService extends Service {
 	if(Config.LOGD)
 	    Log.d(TAG, "CrierService::onStart(start_id=" + start_id + ")");		
 
+	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
 	int type = intent.getIntExtra("type", 0);
 
 	String event   = null;
 	String message = null;
-	if(type == NOTIFICATION_TEXT || type == NOTIFICATION_CALL) {
+	if(type == NOTIFICATION_TEXT) {
 	    event   = "notification";
-	    message = buildNotificationText(intent);
+	    message = buildNotificationText(preferences.getString("text_format", getString(R.string.text_format_default)),
+					    intent);
+
+	} else if(type == NOTIFICATION_CALL) {
+	    event   = "notification";
+	    message = buildNotificationText(preferences.getString("phone_format", getString(R.string.phone_format_default)), 
+					    intent);
 
 	} else if(type == NOTIFICATION_OFFHOOK) {
 	    event = "offhook";
@@ -99,7 +110,7 @@ public class CrierService extends Service {
 
 	} else if(type == NOTIFICATION_ALARM) {
 	    event   = "alarm";
-	    message = buildAlarmText(intent);
+	    message = buildAlarmText(preferences.getString("time_format", getString(R.string.time_format_default)), intent);
 	}
 
 	if(Config.LOGD)
@@ -113,19 +124,17 @@ public class CrierService extends Service {
 	return null;
     }
 
-    private String buildAlarmText(Intent intent) {
+    private String buildAlarmText(String format, Intent intent) {
 	Calendar calendar = Calendar.getInstance();
 
-	return String.format("the time is now, %d %02d %s", 
+	return String.format(format, 
 			    calendar.get(Calendar.HOUR), 
 			    calendar.get(Calendar.MINUTE), 
 			    calendar.get(Calendar.AM_PM) == Calendar.AM ? "AM" : "PM");
     }
 
-    private String buildNotificationText(Intent intent) {
-	int type         = intent.getIntExtra("type", 0);
+    private String buildNotificationText(String format, Intent intent) {
 	String address   = intent.getStringExtra("address");	
-	String type_s    = type == NOTIFICATION_TEXT ? "text message" : "call";
 	String address_s = contact_locator.locate(address);
 
 	if(Config.LOGD && address_s != null)
@@ -138,7 +147,7 @@ public class CrierService extends Service {
 		Log.d(TAG, "location: " + address_s);
 	}
 
-	return String.format("%s from, %s", type_s, address_s);
+	return String.format(format, address_s);
     }
 
     private void speak(String message) {

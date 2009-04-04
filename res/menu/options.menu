@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/option_speech_trainer"
+          android:title="@string/option_speech_trainer" 
+	  android:icon="@drawable/android:drawable/ic_menu_preferences"/>
+
+    <item android:id="@+id/option_about"
+          android:title="@string/option_about" 
+	  android:icon="@drawable/android:drawable/ic_menu_info_details"/>
+
+</menu>
+

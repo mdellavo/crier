@@ -65,7 +65,7 @@ public class EventReceiver extends BroadcastReceiver {
 	Object[]     pdus     = (Object[])extras.get("pdus");
 	SmsMessage[] messages = new SmsMessage[pdus.length];
 
-	for (int i = 0; i<pdus.length; i++) {
+	for(int i = 0; i<pdus.length; i++) {
 	    messages[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
 
 	    String address = messages[i].getDisplayOriginatingAddress();
