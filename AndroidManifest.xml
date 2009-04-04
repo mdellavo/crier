@@ -12,6 +12,7 @@
   <application android:label="@string/app_name">
 
     <activity android:name=".CrierActivity"
+	      android:icon="@drawable/icon"
               android:label="@string/main_name"
 	      android:theme="@android:style/Theme.Dialog">
       <intent-filter>
