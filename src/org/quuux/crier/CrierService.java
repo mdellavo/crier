@@ -13,6 +13,7 @@ import android.preference.PreferenceManager;
 import android.media.AudioManager;
 
 import java.util.Calendar;
+import java.util.List;
 
 import org.quuux.crier.R;
 import org.quuux.crier.AreaCodeLocator;
@@ -35,8 +36,7 @@ public class CrierService extends Service {
     private TTS    tts;
     private String queued_message;
 
-    private AudioManager audio_manager;
-
+    private AudioManager   audio_manager;
     private GeoLocator     geo_locator;
     private ContactLocator contact_locator;
 
@@ -52,6 +52,7 @@ public class CrierService extends Service {
 			Log.d(TAG, "TTS initialized, version " + version);		
 	
 		    initialized = true;
+
 		    if(queued_message != null) {
 			if(Config.LOGD)
 			    Log.d(TAG, "playing queued message");
@@ -127,10 +128,12 @@ public class CrierService extends Service {
     private String buildAlarmText(String format, Intent intent) {
 	Calendar calendar = Calendar.getInstance();
 
-	return String.format(format, 
-			    calendar.get(Calendar.HOUR), 
-			    calendar.get(Calendar.MINUTE), 
-			    calendar.get(Calendar.AM_PM) == Calendar.AM ? "AM" : "PM");
+	int hour      = calendar.get(Calendar.HOUR);
+	int minute    = calendar.get(Calendar.MINUTE);
+	boolean am    = calendar.get(Calendar.AM_PM) == Calendar.AM;
+	String time_s = String.format("%d %d %s", hour, minute, am ? "AM" : "PM");
+
+	return String.format(format, time_s);
     }
 
     private String buildNotificationText(String format, Intent intent) {

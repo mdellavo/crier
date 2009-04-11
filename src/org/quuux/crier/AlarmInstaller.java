@@ -25,7 +25,7 @@ public class AlarmInstaller {
 	    Log.d(TAG, "Installing alarm");
 
 	AlarmManager alarm_manager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);	
-	alarm_manager.setRepeating(AlarmManager.RTC, 0, ALARM_PERIOD, buildIntent(context));
+	alarm_manager.setRepeating(AlarmManager.RTC_WAKEUP, 0, ALARM_PERIOD, buildIntent(context));
     }
 
     public static void cancel(Context context) {

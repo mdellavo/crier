@@ -34,6 +34,7 @@ public class CrierActivity extends PreferenceActivity
 	    else
 		AlarmInstaller.cancel(this);
     }
+
     public boolean onCreateOptionsMenu(Menu menu) {
 	getMenuInflater().inflate(R.menu.options, menu);
 	return true;
