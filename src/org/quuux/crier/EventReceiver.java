@@ -6,13 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Config;
 import android.util.Log;
-
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-
 import android.telephony.PhoneStateListener;
 import android.telephony.gsm.SmsMessage;
-
 import org.quuux.crier.CrierService;
 import org.quuux.crier.AlarmInstaller;
 
@@ -30,17 +27,19 @@ public class EventReceiver extends BroadcastReceiver {
 	String action = intent.getAction();
 	Bundle extras = intent.getExtras();
 
-	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-
 	if(Config.LOGD)
 	    Log.d(TAG, "Event: " + intent.toString());
 
-	if(preferences.getBoolean("phone_enabled", false) && action.compareTo(ACTION_PHONE_STATE) == 0)
-	    onCall(context, extras);
-	else if(preferences.getBoolean("text_enabled", false) && action.compareTo(ACTION_SMS_RECEIVED) == 0)
-	    onText(context, extras);
-	else if(preferences.getBoolean("time_enabled", false) && action.compareTo(Intent.ACTION_BOOT_COMPLETED) == 0)
-	    onBoot(context, extras);
+	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+	if(preferences.getBoolean("enabled", false)) { 
+	    if(preferences.getBoolean("phone_enabled", false) && action.compareTo(ACTION_PHONE_STATE) == 0)
+		onCall(context, extras);
+	    else if(preferences.getBoolean("text_enabled", false) && action.compareTo(ACTION_SMS_RECEIVED) == 0)
+		onText(context, extras);
+	    else if(preferences.getBoolean("time_enabled", false) && action.compareTo(Intent.ACTION_BOOT_COMPLETED) == 0)
+		onBoot(context, extras);
+	}
     }
 
     private void onCall(Context context, Bundle extras) {

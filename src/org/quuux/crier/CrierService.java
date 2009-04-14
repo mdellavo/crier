@@ -5,11 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Config;
 import android.util.Log;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-
 import android.media.AudioManager;
 
 import java.util.Calendar;
@@ -33,13 +33,13 @@ public class CrierService extends Service {
     private boolean initialized = false;
     private boolean silenced    = false;
 
-    private TTS    tts;
-    private String queued_message;
-
+    private Handler        handler;
+    private TTS            tts;
+    private String         queued_message;
     private AudioManager   audio_manager;
     private GeoLocator     geo_locator;
     private ContactLocator contact_locator;
-
+    
     public void onCreate() {
 	super.onCreate();
 
@@ -49,7 +49,8 @@ public class CrierService extends Service {
 	TTS.InitListener init_listener = new TTS.InitListener() {
 		public void onInit(int version) {
 		    if(Config.LOGD)
-			Log.d(TAG, "TTS initialized, version " + version);		
+
+  			Log.d(TAG, "TTS initialized, version " + version);		
 	
 		    initialized = true;
 
@@ -63,10 +64,11 @@ public class CrierService extends Service {
 		}
 	    };
 
+	handler         = new Handler();
 	tts             = new TTS(this, init_listener, true);
-	audio_manager   = (AudioManager)getSystemService(AUDIO_SERVICE);
 	geo_locator     = new GeoLocator();
 	contact_locator = new ContactLocator(this);
+	audio_manager   = (AudioManager)getSystemService(AUDIO_SERVICE);
     }
 
     public void onDestroy() {
@@ -94,13 +96,12 @@ public class CrierService extends Service {
 	if(type == NOTIFICATION_TEXT) {
 	    event   = "notification";
 	    message = buildNotificationText(preferences.getString("text_format", getString(R.string.text_format_default)),
-					    intent);
+					    intent, preferences);
 
 	} else if(type == NOTIFICATION_CALL) {
 	    event   = "notification";
 	    message = buildNotificationText(preferences.getString("phone_format", getString(R.string.phone_format_default)), 
-					    intent);
-
+					    intent, preferences);
 	} else if(type == NOTIFICATION_OFFHOOK) {
 	    event = "offhook";
 	    silence();
@@ -111,32 +112,63 @@ public class CrierService extends Service {
 
 	} else if(type == NOTIFICATION_ALARM) {
 	    event   = "alarm";
-	    message = buildAlarmText(preferences.getString("time_format", getString(R.string.time_format_default)), intent);
+	    message = buildAlarmText(preferences.getString("time_format", getString(R.string.time_format_default)), 
+				     intent, preferences);
 	}
 
 	if(Config.LOGD)
 	    Log.d(TAG, "event: " + event);
 
 	if(message != null)
-	    speak(message);
+	    speak(message);	    
     }
 
     public IBinder onBind(Intent intent) {
 	return null;
     }
 
-    private String buildAlarmText(String format, Intent intent) {
+    private String buildAlarmText(String format, Intent intent, SharedPreferences preferences) {
 	Calendar calendar = Calendar.getInstance();
 
-	int hour      = calendar.get(Calendar.HOUR);
-	int minute    = calendar.get(Calendar.MINUTE);
-	boolean am    = calendar.get(Calendar.AM_PM) == Calendar.AM;
-	String time_s = String.format("%d %d %s", hour, minute, am ? "AM" : "PM");
+	int hour   = calendar.get(Calendar.HOUR);
+	int minute = calendar.get(Calendar.MINUTE);
+	boolean am = calendar.get(Calendar.AM_PM) == Calendar.AM;
 
-	return String.format(format, time_s);
+	// Alarm bit
+	//   Alarm mask is a bitfield for alarms to fire, each bit is
+	//   marks the next half hour with bit 0 being midnight.
+	long alarm_mask = preferences.getLong("alarm_mask", 0x0L);
+
+	if(Config.LOGD)
+	    Log.d(TAG, "alarm bit: " + (((hour * 2) + (minute >= 30 ? 1 : 0)) + (!am ? 24 : 0)));
+
+	long alarm_bit = 1 << (((hour * 2) + (minute >= 30 ? 1 : 0)) + (!am ? 24 : 0));
+
+	// When the alarm is installed it will have a count of past
+	// alarms (>1) and we allow this to trigger
+	String rv = null;
+	if((alarm_mask & alarm_bit)>0 || intent.getIntExtra(Intent.EXTRA_ALARM_COUNT, 0)>1) { 
+
+	    if(hour == 0)
+		hour = 12;
+
+	    String time_s; 
+	    if(hour == 12 && minute == 0 && am)
+		time_s = "midnight";
+	    else if(hour == 12 && minute == 0 && !am)
+		time_s = "noon";
+	    else if(minute == 0)
+		time_s = String.format("%d %s", hour, am ? "AM" : "PM");
+	    else
+		time_s = String.format("%d %d %s", hour, minute, am ? "AM" : "PM");
+
+	    rv = String.format(format, time_s);
+	}
+
+	return rv;
     }
 
-    private String buildNotificationText(String format, Intent intent) {
+    private String buildNotificationText(String format, Intent intent, SharedPreferences preferences) {
 	String address   = intent.getStringExtra("address");	
 	String address_s = contact_locator.locate(address);
 
