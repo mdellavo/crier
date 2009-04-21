@@ -1,35 +1,43 @@
-* Crier
-  
-  http://chart.apis.google.com/chart?cht=qr&chs=230x230&chl=http%3A%2F%2Fquuux.org%2Fsoftware%2Fcrier
-  
-** About
-   A utility for to announce incoming calls and text messages as well
-   as the top and bottom of the hour. Crier will also try to a number
-   of methods to identify the other party including Contact and Area
-   Code search.  
+#+TITLE:     Crier
+#+AUTHOR:    Marc DellaVolpe
+#+EMAIL:     marc.dellavolpe@gmail.com
+#+TEXT:      TTS notifier application for Android phones
+#+OPTIONS:   toc:nil num:nil creator:nil
+#+LINK_UP:  
+#+LINK_HOME:
 
-   Crier is written by [[mailto:marc.dellavolpe@gmailc.com][Marc DellaVolpe(marc.dellavolpe@gmail.com)]]
+* About  
+  
+#+ATTR_HTML: class="tag"
+  [[file:data/qr.png]]
 
-** Features
-   - Announces incoming callers
-   - Announces incoming text message senders
-   - Announces the top and bottom of the hour
-   - Ability to specify each message format
-   - Ability to specify which times to announce
+  A utility for to announce incoming calls and text messages as well
+  as the top and bottom of the hour. Crier will also try to a number
+  of methods to identify the other party including Contact and Area
+  Code search.  
+  
+  Crier is written by [[mailto:marc.dellavolpe@gmailc.com][Marc DellaVolpe(marc.dellavolpe@gmail.com)]]
+  
+* Features
+  - Announces incoming callers
+  - Announces incoming text message senders
+  - Announces the top and bottom of the hour
+  - Ability to specify each message format
+  - Ability to specify which times to announce
      
-** Screen Shots
+* Screen Shots
+  
+  -- INSERT SCREEN SHOTS --
 
-   -- INSERT SCREEN SHOTS --
-
-** Download
+* Download
    
-   From the [[market:crier][Android Market]] or [[http://www.quuux.org/software/crier/][Here]]
+  From the [[market:crier][Android Market]] or [[http://www.quuux.org/software/crier/][Here]]
 
-** History
-   Apr 15 2009 - Version 1.0
-
-** To Do
-   These are just idea's, [[mailto:marc.dellavolpe@gmailc.com][email]] me if you have any preference or suggestions.
-
-   - Ability to add/specify pre-recorded speech
-   - Repeating
+* History
+  Apr 15 2009 - Version 1.0
+  
+* To Do
+  These are just idea's, [[mailto:marc.dellavolpe@gmailc.com][email]] me if you have any preference or suggestions.
+  
+  - Ability to add/specify pre-recorded speech
+  - Repeating
