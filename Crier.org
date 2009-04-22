@@ -1,29 +1,37 @@
 #+TITLE:     Crier
 #+AUTHOR:    Marc DellaVolpe
 #+EMAIL:     marc.dellavolpe@gmail.com
-#+TEXT:      TTS notifier application for Android phones
+#+TEXT:      Text-to-Speech event notification utility for Android\trade-based phones
 #+OPTIONS:   toc:nil num:nil creator:nil
 #+LINK_UP:  
 #+LINK_HOME:
 
+[[file:data/icon.png]]
+
 * About  
   
-#+ATTR_HTML: class="tag"
   [[file:data/qr.png]]
 
-  A utility for to announce incoming calls and text messages as well
-  as the top and bottom of the hour. Crier will also try to a number
-  of methods to identify the other party including Contact and Area
-  Code search.  
-  
-  Crier is written by [[mailto:marc.dellavolpe@gmailc.com][Marc DellaVolpe(marc.dellavolpe@gmail.com)]]
+  Crier is a utility for Android\trade-based phones to announce events with a
+  Text-to-Speech(TTS) engine. Currently crier will announce incoming
+  calls and text messages as well as the top and bottom of the
+  hour. Crier will try to identify callers from your contacts and by
+  looking up the region from the area code.
+
+  Text-to-Speech functionality is provided by the [[http://code.google.com/p/eyes-free/][eyes-free]] project.
+
+  Crier is available for purchase in the [[market:crier][Android Market]] at a price of
+  $0.99 USD.  The source code to Crier is freely available under the
+  Apache2 license.
+
+  Crier is written by [[mailto:marc.dellavolpe@gmail.com][Marc DellaVolpe(marc.dellavolpe@gmail.com)]]
   
 * Features
   - Announces incoming callers
   - Announces incoming text message senders
   - Announces the top and bottom of the hour
-  - Ability to specify each message format
-  - Ability to specify which times to announce
+  - Customizable message formats
+  - Customizable time announcements
      
 * Screen Shots
   
@@ -31,13 +39,16 @@
 
 * Download
    
-  From the [[market:crier][Android Market]] or [[http://www.quuux.org/software/crier/][Here]]
+  Purchase from the [[market:crier][Android Market]] or download the source [[http://www.quuux.org/software/crier/][Here]]
 
 * History
   Apr 15 2009 - Version 1.0
   
-* To Do
-  These are just idea's, [[mailto:marc.dellavolpe@gmailc.com][email]] me if you have any preference or suggestions.
+* Ideas
+  These are just idea's, [[mailto:marc.dellavolpe@gmail.com][email]] me if you have any preference or suggestions.
   
   - Ability to add/specify pre-recorded speech
   - Repeating
+  - Country code lookup
+  - Ability to silence ringtone
+  - Increase volume (?)

@@ -1,13 +1,11 @@
 /* Typography.css from blueprintcss */
 
 body {
-  font-size: 75%;
-  color: #222;
-  background: #fff;
+  font-size: 100%;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
   
-h1,h2,h3,h4,h5,h6 { font-weight: normal; color: #111; }
+h1,h2,h3,h4,h5,h6 { font-weight: normal; }
  
 h1 { font-size: 3em; line-height: 1; margin-bottom: 0.5em; }
 h2 { font-size: 2em; margin-bottom: 0.75em; }
@@ -25,11 +23,9 @@ p { margin: 0 0 1.5em; }
 p img.left { float: left; margin: 1.5em 1.5em 1.5em 0; padding: 0; }
 p img.right { float: right; margin: 1.5em 0 1.5em 1.5em; }
  
-a:focus,
-a:hover { color: #000; }
-a { color: #009; text-decoration: underline; }
+a { text-decoration: underline; }
  
-blockquote { margin: 1.5em; color: #666; font-style: italic; }
+blockquote { margin: 1.5em; font-style: italic; }
 strong { font-weight: bold; }
 em,dfn { font-style: italic; }
 dfn { font-weight: bold; }
@@ -82,28 +78,45 @@ caption { background: #eee; }
 body {
   width: 600px;
   margin: auto;
+  background: #D2D6D8;
+  color: #1F1E20;
 }
 
+a {
+  color: #565FB3;
+}
+
+a:focus,
+a:hover { color: #565FB3; }
+
 .title {
-  font-size: 800%;
+  font-size: 400%;
   letter-spacing: 0.25em;
   margin-bottom: 0.1em;
+  color: #fff;
 }
 
 body>p {
   text-align: center;
+  color: #605668;
 }
 
 body>img {
     margin: auto;
+    width: 200%;
+    height: 200%;
 }
 
 .outline-2 {
-  border: 3px double #000;
+  border: 3px double #605668;
   margin-bottom: 1em;
   padding: 0.5em 1em;
+  background: #fff;
+  text-align: justify;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
-img.tag {
-  float: right;
+.outline-2 img {
+    float: right;
 }
