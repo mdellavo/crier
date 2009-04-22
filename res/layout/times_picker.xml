@@ -7,7 +7,586 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
       
-      
+      <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		   android:layout_width="fill_parent"
+		   android:layout_height="fill_parent">
+	<TableRow>
+	  <TextView
+             android:text="@string/time_00"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
 
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0000"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+ 	  <CheckBox android:id="@+id/time_0030"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_01"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0100"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0130"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_02"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0200"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0230"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_03"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0300"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0330"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_04"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0400"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0430"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_05"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0500"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0530"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_06"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0600"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0630"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_07"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0700"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0730"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_08"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0800"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0830"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_09"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0900"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_0930"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_10"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1000"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1030"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_11"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1100"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1130"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_12"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1200"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1230"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_13"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1300"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1330"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_14"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1400"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1430"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_15"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1500"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1530"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_16"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1600"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1630"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_17"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1700"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1730"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_18"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1800"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1830"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_19"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1900"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_1930"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_20"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_2000"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_2030"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_21"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_2100"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_2130"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_22"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_2200"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_2230"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+	<TableRow>
+	  <TextView
+             android:text="@string/time_23"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_top"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_2300"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+          <TextView
+             android:text="@string/time_bottom"
+	     android:layout_width="fill_parent"
+	     android:layout_height="fill_parent"/>
+
+	  <CheckBox android:id="@+id/time_2330"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"/>
+	</TableRow>
+      </TableLayout>
+      
     </ScrollView>
 </LinearLayout>

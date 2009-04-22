@@ -65,7 +65,7 @@ public class CrierService extends Service {
 	    };
 
 	handler         = new Handler();
-	tts             = new TTS(this, init_listener, true);
+	//tts             = new TTS(this, init_listener, true);
 	geo_locator     = new GeoLocator();
 	contact_locator = new ContactLocator(this);
 	audio_manager   = (AudioManager)getSystemService(AUDIO_SERVICE);

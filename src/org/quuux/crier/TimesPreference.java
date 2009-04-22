@@ -20,7 +20,5 @@ public class TimesPreference extends DialogPreference {
     protected View onCreateDialogView() {
 	LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	return inflater.inflate(R.layout.times_picker, null);
-    }
-
-    
+    }    
 }
