@@ -58,11 +58,11 @@
 
 	<org.quuux.crier.TimesPreference
 	   android:key="time_flags"
+	   android:defaultValue="@string/time_flags_default"
 	   android:dialogTitle="@string/dialog_time_flags"
            android:title="@string/title_time_flags"
            android:summary="@string/summary_time_flags"  
 	   android:dependency="enabled"/>
-
 	
     </PreferenceCategory>                
 </PreferenceScreen>

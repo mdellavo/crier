@@ -41,6 +41,7 @@
    <string name="title_time_flags">Times to Announce</string>
    <string name="summary_time_flags">Pick which times you want announced</string>
    <string name="dialog_time_flags">Times to Announcement</string>
+   <string name="time_flags_default">0</string>
 
    <!-- trainer -->
    <string name="trainer_button_add">Add a new Phrase</string>
@@ -54,7 +55,6 @@
    <string name="option_about">About</string>
 
    <!-- about -->
-
    <string name="about_title">About Crier</string>
    <string name="about_ok">OK</string>
    
@@ -65,31 +65,4 @@
      bottom of the hour.  Crier is written by Marc DellaVolpe(marc.dellavolpe@gmail.com)
    </string>
 
-   <!-- time_picker -->
-   <string name="time_top">:00</string>
-   <string name="time_bottom">:30</string>
-   <string name="time_00">12a</string>
-   <string name="time_01">1a</string>
-   <string name="time_02">2a</string>
-   <string name="time_03">3a</string>
-   <string name="time_04">4a</string>
-   <string name="time_05">5a</string>
-   <string name="time_06">6a</string>
-   <string name="time_07">7a</string>
-   <string name="time_08">8a</string>
-   <string name="time_09">9a</string>
-   <string name="time_10">10a</string>
-   <string name="time_11">11a</string>
-   <string name="time_12">12p</string>
-   <string name="time_13">1p</string>
-   <string name="time_14">2p</string>
-   <string name="time_15">3p</string>
-   <string name="time_16">4p</string>
-   <string name="time_17">5p</string>
-   <string name="time_18">6p</string>
-   <string name="time_19">7p</string>
-   <string name="time_20">8p</string>
-   <string name="time_21">9p</string>
-   <string name="time_22">10p</string>
-   <string name="time_23">11p</string>
 </resources>
