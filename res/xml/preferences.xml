@@ -1,68 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-        xmlns:android="http://schemas.android.com/apk/res/android">
+   xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory
+     android:title="@string/cat_main">
+    <CheckBoxPreference
+       android:key="enabled"
+       android:defaultValue="true"
+       android:title="@string/title_enabled"
+       android:summary="@string/summary_enabled" />
+  </PreferenceCategory>                
+  <PreferenceCategory
+     android:title="@string/cat_calls">
+    
+    <CheckBoxPreference
+       android:key="phone_enabled"
+       android:defaultValue="true"
+       android:title="@string/title_phone_enabled"
+       android:summary="@string/summary_phone_enabled"  
+       android:dependency="enabled"/>
+    
+    <EditTextPreference
+       android:key="phone_format"
+       android:defaultValue="@string/phone_format_default"
+       android:dialogTitle="@string/dialog_phone_format"
+       android:title="@string/title_phone_format"
+       android:summary="@string/summary_phone_format"  
+       android:dependency="enabled"/>
 
-    <PreferenceCategory
-            android:title="@string/preferences_title">
+  </PreferenceCategory>
 
-        <CheckBoxPreference
-           android:key="enabled"
-	   android:defaultValue="true"
-           android:title="@string/title_enabled"
-           android:summary="@string/summary_enabled" />
+  <PreferenceCategory
+     android:title="@string/cat_texts">
+    <CheckBoxPreference
 
-        <CheckBoxPreference
-           android:key="phone_enabled"
-	   android:defaultValue="true"
-           android:title="@string/title_phone_enabled"
-           android:summary="@string/summary_phone_enabled"  
-	   android:dependency="enabled"/>
-	
-        <EditTextPreference
-           android:key="phone_format"
-	   android:defaultValue="@string/phone_format_default"
-	   android:dialogTitle="@string/dialog_phone_format"
-           android:title="@string/title_phone_format"
-           android:summary="@string/summary_phone_format"  
-	   android:dependency="enabled"/>
-	
-        <CheckBoxPreference
-           android:key="text_enabled"
-	   android:defaultValue="true"
-           android:title="@string/title_text_enabled"
-           android:summary="@string/summary_text_enabled"  
-	   android:dependency="enabled"/>
-	
-        <EditTextPreference
-           android:key="text_format"
-	   android:defaultValue="@string/text_format_default"
-	   android:dialogTitle="@string/dialog_text_format"
-           android:title="@string/title_text_format"
-           android:summary="@string/summary_text_format"  
-	   android:dependency="enabled"/>
-	
-        <CheckBoxPreference
-           android:key="time_enabled"
-	   android:defaultValue="true"
-           android:title="@string/title_time_enabled"
-           android:summary="@string/summary_time_enabled" 
-	   android:dependency="enabled"/>
-	
-        <EditTextPreference
-           android:key="time_format"
-	   android:defaultValue="@string/time_format_default"
-	   android:dialogTitle="@string/dialog_time_format"
-           android:title="@string/title_time_format"
-           android:summary="@string/summary_time_format"  
-	   android:dependency="enabled"/>
+       android:key="text_enabled"
+       android:defaultValue="true"
+       android:title="@string/title_text_enabled"
+       android:summary="@string/summary_text_enabled"  
+       android:dependency="enabled"/>
+    
+    <EditTextPreference
+       android:key="text_format"
+       android:defaultValue="@string/text_format_default"
+       android:dialogTitle="@string/dialog_text_format"
+       android:title="@string/title_text_format"
+       android:summary="@string/summary_text_format"  
+       android:dependency="enabled"/>
+  </PreferenceCategory>
+  <PreferenceCategory
+     android:title="@string/cat_times">	
+    <CheckBoxPreference
+       android:key="time_enabled"
+       android:defaultValue="true"
+       android:title="@string/title_time_enabled"
+       android:summary="@string/summary_time_enabled" 
+       android:dependency="enabled"/>
+    
+    <EditTextPreference
+       android:key="time_format"
+       android:defaultValue="@string/time_format_default"
+       android:dialogTitle="@string/dialog_time_format"
+       android:title="@string/title_time_format"
+       android:summary="@string/summary_time_format"  
+       android:dependency="enabled"/>
 
-	<org.quuux.crier.TimesPreference
-	   android:key="time_flags"
-	   android:defaultValue="@string/time_flags_default"
-	   android:dialogTitle="@string/dialog_time_flags"
-           android:title="@string/title_time_flags"
-           android:summary="@string/summary_time_flags"  
-	   android:dependency="enabled"/>
-	
-    </PreferenceCategory>                
+    <org.quuux.crier.TimesPreference
+       android:key="alarm_mask"
+       android:defaultValue="@string/alarm_mask_default"
+       android:dialogTitle="@string/dialog_alarm_mask"
+       android:title="@string/title_alarm_mask"
+       android:summary="@string/summary_alarm_mask"  
+       android:dependency="enabled"/>
+  </PreferenceCategory> 
 </PreferenceScreen>

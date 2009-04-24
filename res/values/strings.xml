@@ -9,7 +9,10 @@
     <string name="trainer_name">Speech Trainer</string>
  
    <!-- main -->
-   <string name="preferences_title">Crier Settings</string>
+   <string name="cat_main">Crier Settings</string>
+   <string name="cat_calls">Phone Call Settings</string>
+   <string name="cat_texts">Text Message Settings</string>
+   <string name="cat_times">Time Settings</string>
 
    <string name="title_enabled">Enabled</string>
    <string name="summary_enabled">Master switch for crier announcements</string>
@@ -38,10 +41,10 @@
    <string name="summary_time_format">Announcement to play at the top and bottom of the hour</string>
    <string name="dialog_time_format">Time Announcement</string>
 
-   <string name="title_time_flags">Times to Announce</string>
-   <string name="summary_time_flags">Pick which times you want announced</string>
-   <string name="dialog_time_flags">Times to Announcement</string>
-   <string name="time_flags_default">0</string>
+   <string name="title_alarm_mask">Times to Announce</string>
+   <string name="summary_alarm_mask">Pick which times you want announced</string>
+   <string name="dialog_alarm_mask">Times to Announcement</string>
+   <string name="alarm_mask_default">0</string>
 
    <!-- trainer -->
    <string name="trainer_button_add">Add a new Phrase</string>
@@ -52,6 +55,7 @@
 
    <!-- menu -->
    <string name="option_speech_trainer">Speech Trainer</string>
+   <string name="option_toggle">Add Toggle to Home</string>
    <string name="option_about">About</string>
 
    <!-- about -->

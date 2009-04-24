@@ -65,7 +65,7 @@ public class CrierService extends Service {
 	    };
 
 	handler         = new Handler();
-	//tts             = new TTS(this, init_listener, true);
+	tts             = new TTS(this, init_listener, true);
 	geo_locator     = new GeoLocator();
 	contact_locator = new ContactLocator(this);
 	audio_manager   = (AudioManager)getSystemService(AUDIO_SERVICE);
@@ -137,17 +137,16 @@ public class CrierService extends Service {
 	// Alarm bit
 	//   Alarm mask is a bitfield for alarms to fire, each bit is
 	//   marks the next half hour with bit 0 being midnight.
-	long alarm_mask = preferences.getLong("alarm_mask", 0x0L);
+	long alarm_mask = Long.parseLong(preferences.getString("alarm_mask", "0"));
+	long alarm_bit  = 1L << (((hour * 2) + (minute >= 30 ? 1 : 0)) + (!am ? 24 : 0));
 
 	if(Config.LOGD)
-	    Log.d(TAG, "alarm bit: " + (((hour * 2) + (minute >= 30 ? 1 : 0)) + (!am ? 24 : 0)));
-
-	long alarm_bit = 1 << (((hour * 2) + (minute >= 30 ? 1 : 0)) + (!am ? 24 : 0));
+	    Log.d(TAG, "alarm bit: " + String.format("0x012", alarm_bit));
 
 	// When the alarm is installed it will have a count of past
 	// alarms (>1) and we allow this to trigger
 	String rv = null;
-	if((alarm_mask & alarm_bit)>0 || intent.getIntExtra(Intent.EXTRA_ALARM_COUNT, 0)>1) { 
+	if((alarm_mask & alarm_bit) != 0 || intent.getIntExtra(Intent.EXTRA_ALARM_COUNT, 0)>1) { 
 
 	    if(hour == 0)
 		hour = 12;

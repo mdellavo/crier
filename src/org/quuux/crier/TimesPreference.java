@@ -41,16 +41,16 @@ public class TimesPreference extends ListPreference {
 	boolean[] t = new boolean[48];
 
 	for(int i=0; i<48; i++)
-	    t[i] = (times & 1<<i) != 0;
+	    t[i] = (times & 1L<<i) != 0;
 
 	return t;
     }
 
     private void setTime(int which, boolean enabled) {
 	if(enabled)
-	    times |= (1<<which);
+	    times |= (1L<<which);
 	else
-	    times &= ~(1<<which);
+	    times &= ~(1L<<which);
 
 	getEditor().putString(getKey(), Long.toString(times)).commit();
 

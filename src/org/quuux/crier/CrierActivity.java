@@ -13,18 +13,19 @@ import android.app.AlertDialog;
 
 import org.quuux.crier.R;
 import org.quuux.crier.TrainerActivity;
+import org.quuux.crier.ToggleActivity;
 
 public class CrierActivity extends PreferenceActivity
     implements SharedPreferences.OnSharedPreferenceChangeListener
 {
-    final static int DIALOG_ABOUT = 0x1;
+    final static int DIALOG_ABOUT     = 0x1;
+    final static String INTENT_TOGGLE = "org.quuux.crier.ToggleActivity";
 
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
-	SharedPreferences preferences;
-	preferences = PreferenceManager.getDefaultSharedPreferences(this);
+	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 	preferences.registerOnSharedPreferenceChangeListener(this);
 
         addPreferencesFromResource(R.xml.preferences);
@@ -47,13 +48,30 @@ public class CrierActivity extends PreferenceActivity
 	boolean rv;
 	
 	switch (item.getItemId()) {
-	case R.id.option_speech_trainer:
-	    startActivity(new Intent(this, TrainerActivity.class));
-	    rv = true;
-	    break;
+
+	// case R.id.option_speech_trainer:
+	//     startActivity(new Intent(this, TrainerActivity.class));
+	//     rv = true;
+	//     break;
 
 	case R.id.option_about:
 	    showDialog(DIALOG_ABOUT);
+	    rv = true;
+	    break;
+
+	case R.id.option_toggle:
+	    Intent i = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
+
+	    Intent shortcut = new Intent(Intent.ACTION_MAIN);
+	    shortcut.setClassName(this, ToggleActivity.class.getName());
+
+	    i.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcut);
+	    i.putExtra(Intent.EXTRA_SHORTCUT_NAME, "Toggle Crier");	    
+	    i.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, 
+	    	       Intent.ShortcutIconResource.fromContext(CrierActivity.this, R.drawable.toggle));
+			    
+	    sendBroadcast(i);
+
 	    rv = true;
 	    break;
 

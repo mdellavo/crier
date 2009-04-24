@@ -40,7 +40,7 @@
 * Download
    
   Purchase from the [[market:crier][Android Market]] or download the source [[http://www.quuux.org/software/crier/][Here]]
-
+  
 * History
   Apr 15 2009 - Version 1.0
   
