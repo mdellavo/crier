@@ -8,6 +8,7 @@ import android.util.Config;
 import android.util.Log;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.telephony.TelephonyManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.gsm.SmsMessage;
 import org.quuux.crier.CrierService;

@@ -16,8 +16,11 @@ public class ToggleActivity extends Activity
         super.onCreate(savedInstanceState);
 	
 	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-	
-	Toaster.textShort(this, "Toggle!");
+	boolean enabled = !preferences.getBoolean("enabled", false);
+
+	preferences.edit().putBoolean("enabled", enabled).commit();
+
+	Toaster.textShort(this, enabled ? "Crier Enabled" : "Crier Disabled");
 	finish();
     }
 }

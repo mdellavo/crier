@@ -21,8 +21,7 @@
   Text-to-Speech functionality is provided by the [[http://code.google.com/p/eyes-free/][eyes-free]] project.
 
   Crier is available for purchase in the [[market:crier][Android Market]] at a price of
-  $0.99 USD.  The source code to Crier is freely available under the
-  Apache2 license.
+  $0.99 USD.  The source code to Crier is freely.
 
   Crier is written by [[mailto:marc.dellavolpe@gmail.com][Marc DellaVolpe(marc.dellavolpe@gmail.com)]]
   
@@ -30,9 +29,10 @@
   - Announces incoming callers
   - Announces incoming text message senders
   - Announces the top and bottom of the hour
-  - Customizable message formats
+  - Customizable messages
   - Customizable time announcements
-     
+  - Home screen toggle shortcut
+    
 * Screen Shots
   
   -- INSERT SCREEN SHOTS --
@@ -52,3 +52,4 @@
   - Country code lookup
   - Ability to silence ringtone
   - Increase volume (?)
+  - gmail notifier - https://github.com/jonasl/GmailNotifier

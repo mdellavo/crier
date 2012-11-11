@@ -1,1 +1,5 @@
-/src/org/quuux/crier/R.java
+R.java
+gen/
+bin/
+local.properties
+proguard-project.txt

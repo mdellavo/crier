@@ -11,15 +11,17 @@ import android.util.Log;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.media.AudioManager;
+import android.telephony.TelephonyManager;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import org.quuux.crier.R;
-import org.quuux.crier.AreaCodeLocator;
+import org.quuux.crier.GeoLocator;
 import org.quuux.crier.ContactLocator;
 
-import com.google.tts.TTS;
+import android.speech.tts.TextToSpeech;
 
 public class CrierService extends Service {
     private static final String TAG = "Crier";
@@ -30,11 +32,13 @@ public class CrierService extends Service {
     public static final int NOTIFICATION_IDLE    = 0x4;
     public static final int NOTIFICATION_ALARM   = 0x5;
 
+    public static final String ACTION_CALL_UPDATE = "org.quuux.crier.CALL_UPDATE";
+    
     private boolean initialized = false;
     private boolean silenced    = false;
 
     private Handler        handler;
-    private TTS            tts;
+    private TextToSpeech   tts;
     private String         queued_message;
     private AudioManager   audio_manager;
     private GeoLocator     geo_locator;
@@ -46,7 +50,7 @@ public class CrierService extends Service {
 	if(Config.LOGD)
 	    Log.d(TAG, "CrierService::onCreate()");		
 
-	TTS.InitListener init_listener = new TTS.InitListener() {
+	TextToSpeech.OnInitListener init_listener = new TextToSpeech.OnInitListener() {
 		public void onInit(int version) {
 		    if(Config.LOGD)
 
@@ -65,7 +69,8 @@ public class CrierService extends Service {
 	    };
 
 	handler         = new Handler();
-	tts             = new TTS(this, init_listener, true);
+	tts             = new TextToSpeech(this, init_listener);
+        tts.setLanguage(Locale.US);
 	geo_locator     = new GeoLocator();
 	contact_locator = new ContactLocator(this);
 	audio_manager   = (AudioManager)getSystemService(AUDIO_SERVICE);
@@ -102,29 +107,50 @@ public class CrierService extends Service {
 	    event   = "notification";
 	    message = buildNotificationText(preferences.getString("phone_format", getString(R.string.phone_format_default)), 
 					    intent, preferences);
+
+            startIncomingCallActivity(intent);
+    
 	} else if(type == NOTIFICATION_OFFHOOK) {
 	    event = "offhook";
 	    silence();
 
+            updateIncomingCallActivity(intent);
+
 	} else if(type == NOTIFICATION_IDLE) { 
 	    event = "idle";
 	    unsilence();
+
+            updateIncomingCallActivity(intent);
 
 	} else if(type == NOTIFICATION_ALARM) {
 	    event   = "alarm";
 	    message = buildAlarmText(preferences.getString("time_format", getString(R.string.time_format_default)), 
 				     intent, preferences);
 	}
-
+        
 	if(Config.LOGD)
 	    Log.d(TAG, "event: " + event);
-
+        
 	if(message != null)
 	    speak(message);	    
     }
-
+    
     public IBinder onBind(Intent intent) {
 	return null;
+    }
+    
+    private void startIncomingCallActivity(Intent intent) {
+        Intent i = new Intent(this, IncomingCallActivity.class);
+        i.putExtras(intent);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+    }
+
+    private void updateIncomingCallActivity(Intent intent) {
+        Intent i = new Intent();
+        i.setAction(ACTION_CALL_UPDATE);
+        i.putExtras(intent);
+        sendBroadcast(i);
     }
 
     private String buildAlarmText(String format, Intent intent, SharedPreferences preferences) {
@@ -143,10 +169,8 @@ public class CrierService extends Service {
 	if(Config.LOGD)
 	    Log.d(TAG, "alarm bit: " + String.format("0x012", alarm_bit));
 
-	// When the alarm is installed it will have a count of past
-	// alarms (>1) and we allow this to trigger
 	String rv = null;
-	if((alarm_mask & alarm_bit) != 0 || intent.getIntExtra(Intent.EXTRA_ALARM_COUNT, 0)>1) { 
+	if((alarm_mask & alarm_bit) != 0 || intent.getIntExtra(Intent.EXTRA_ALARM_COUNT, 0)==1) { 
 
 	    if(hour == 0)
 		hour = 12;

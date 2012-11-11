@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.app.Dialog;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 
 import org.quuux.crier.R;
 import org.quuux.crier.TrainerActivity;
@@ -62,9 +63,9 @@ public class CrierActivity extends PreferenceActivity
 	case R.id.option_toggle:
 	    Intent i = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
 
-	    Intent shortcut = new Intent(Intent.ACTION_MAIN);
-	    shortcut.setClassName(this, ToggleActivity.class.getName());
-
+	    Intent shortcut = new Intent();
+	    shortcut.setComponent(new ComponentName("org.quuux.crier", "org.quuux.crier.ToggleActivity"));
+	    
 	    i.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcut);
 	    i.putExtra(Intent.EXTRA_SHORTCUT_NAME, "Toggle Crier");	    
 	    i.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, 

@@ -22,11 +22,14 @@
       </intent-filter>
     </activity>
 
+    <activity android:name=".IncomingCallActivity" android:theme="@style/Theme.Transparent"/>
+
     <activity android:name=".TrainerActivity"
               android:label="@string/trainer_name"/>
 
     <activity android:name=".ToggleActivity"
-	      android:theme="@android:style/Theme.Translucent"
+	      android:theme="@android:style/Theme.Translucent.NoTitleBar"
+	      android:exported="true"
               android:label="">
     </activity>
     

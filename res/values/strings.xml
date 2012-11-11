@@ -63,10 +63,7 @@
    <string name="about_ok">OK</string>
    
    <string name="about_text">
-     Crier is a simple utility to announce events via the Eyes-free
-     project's Text-to-Speech (TTS) library.  Curently supported events
-     are incoming phone calls and text messages as well as the top and
-     bottom of the hour.  Crier is written by Marc DellaVolpe(marc.dellavolpe@gmail.com)
+       HEAR YE
    </string>
 
 </resources>
